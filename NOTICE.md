@@ -1,0 +1,43 @@
+# Thông báo nguồn gốc và quyền phân phối
+
+Artifact ứng viên phát hành nội bộ được chấp nhận: `0.2.0-rc1`. Nhánh tích hợp
+hiện mang version `0.2.0-rc2-dev` và chưa phải release mới.
+
+## Thành phần đã xác định điều khoản
+
+- Dự án RO-PUF nguồn đi kèm GNU GPL phiên bản 3; văn bản được lưu tại
+  `LICENSES/GPL-3.0-only.txt`.
+- RTL BCH encoder/decoder có Copyright 2014 Russ Dill và BSD-2-Clause; thông báo
+  được lưu tại `LICENSES/BSD-2-Clause-BCH.txt`.
+- `rtl/soc/picorv32.v` có Copyright 2015 Claire Xenia Wolf và thông báo cấp phép
+  kiểu ISC được lưu tại `LICENSES/PicoRV32-ISC.txt`.
+
+## Nguồn gốc Kyber và Keccak
+
+Chủ dự án xác nhận RTL Keccak/SHA3 dùng trong luồng Kyber là code thuộc dự án và
+do chủ dự án viết. Phần Kyber cũ không thuộc Keccak được clone qua
+`https://github.com/tuandat081125/Kyber.git`, commit
+`0bb04eee36396c3e9b93cf83c835ac07f1d05338`. Đối chiếu source xác định nền RTL
+là `https://github.com/xingyf14/CRYSTALS-KYBER`, commit
+`70aaad3bbf8265e94f68241683b000bf9d4894bb`.
+
+Implementation CRYSTALS-Kyber chính thức tại `https://github.com/pq-crystals/kyber`
+được cung cấp theo CC0 hoặc Apache-2.0. License đó không tự động chứng minh quyền
+đối với cách thể hiện Verilog trong hai repo RTL. Repo Xing/Li chỉ nêu mục đích
+học thuật; repo trung gian không có license rõ ràng tại lần kiểm tra ngày
+2026-08-30. Vì vậy phân phối công khai source/bitstream vẫn bị chặn cho đến khi
+các tác giả RTL cung cấp quyền rõ ràng tại `LICENSES/KYBER-PERMISSION.txt`.
+
+Xem `docs/PROVENANCE.md` để biết ranh giới thành phần, nguồn và bằng chứng còn
+thiếu trước khi phát hành công khai.
+
+Đường thuật toán tích hợp hiện đã PASS cổng functional ML-KEM-512 bit-exact với
+tập NIST ACVP sample và oracle pq-crystals được ghi trong báo cáo. Kết quả này
+không phải chứng nhận CAVP/FIPS 140-3 và không thay đổi tình trạng quyền phân
+phối của RTL nền.
+
+## Code thuộc dự án
+
+Chưa chọn top-level license cho RTL tích hợp, firmware, host utility, test và tài
+liệu do dự án sở hữu. Chủ sở hữu phải thêm file `LICENSE` tương thích với nghĩa
+vụ của mọi thành phần trước khi phát hành công khai.
