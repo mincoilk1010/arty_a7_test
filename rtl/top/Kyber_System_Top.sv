@@ -189,7 +189,7 @@ module Kyber_System_Top(
     keccak_shared_arbiter u_keccak_shared (
         .clk                 (clk),
         .rst                 (~rst_n),   // arbiter/hash_core use active-high rst
-
+	.hash_grant(hash_grant),
         .hash_init           (hash_keccak_init),
         .hash_hard_init      (hash_keccak_init_hard),
         .hash_mode           (hash_keccak_mode),
@@ -223,5 +223,5 @@ module Kyber_System_Top(
 
     // The full Kyber-512 Server/Client loopback is instantiated inside
     // riscv_soc and controlled by firmware through its AXI-Lite registers.
-
+    
 endmodule

@@ -90,6 +90,7 @@ SOC_SRCS = ../../rtl/soc/picorv32.v \
            ../../rtl/soc/soc_peripherals.sv \
            ../../rtl/soc/riscv_soc.sv \
            ../../rtl/top/kdf_keccak.sv \
+           ../../rtl/top/keccak_shared_arbiter.sv \
            ../../rtl/top/Kyber_System_Top.sv
 
 ALL_SRCS = $(COMMON_SRCS) $(HASH_SRCS) $(KYBER_SRCS) $(FE_SRCS) $(PUF_SRCS) $(SOC_SRCS)

@@ -37,6 +37,7 @@ set sources [list \
     [file join $root_dir rtl kyber kyber_axi_wrapper.v] \
     [file join $root_dir rtl top keccak_arbiter.v] \
     [file join $root_dir rtl top kdf_keccak.sv] \
+    [file join $root_dir rtl top keccak_shared_arbiter.sv] \
     [file join $root_dir rtl top Kyber_System_Top.sv] \
     [file join $root_dir rtl soc picorv32.v] \
     [file join $root_dir rtl soc soc_bram.v] \

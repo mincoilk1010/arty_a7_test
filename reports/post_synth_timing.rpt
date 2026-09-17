@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2026.1 (lin64) Build 6511674 Tue Jun 16 11:01:26 MDT 2026
-| Date         : Thu Sep 17 09:05:46 2026
+| Date         : Thu Sep 17 11:14:56 2026
 | Host         : minh-bui-Dell-G15-5511 running 64-bit Ubuntu 26.04 LTS
 | Command      : report_timing_summary -file /home/minh-bui/Desktop/arty_a7_test/reports/post_synth_timing.rpt
 | Design       : Kyber_System_Top
@@ -154,7 +154,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-     11.690        0.000                      0                69420        0.037        0.000                      0                69420        8.870        0.000                       0                 26265  
+     10.490        0.000                      0                74510        0.037        0.000                      0                74510        8.870        0.000                       0                 27961  
 
 
 All user specified timing constraints are met.
@@ -177,7 +177,7 @@ CLK100MHZ  {0.000 10.000}     20.000          50.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-CLK100MHZ          11.690        0.000                      0                63197        0.037        0.000                      0                63197        8.870        0.000                       0                 26265  
+CLK100MHZ          10.490        0.000                      0                68287        0.037        0.000                      0                68287        8.870        0.000                       0                 27961  
 
 
 ------------------------------------------------------------------------------------------------
@@ -209,7 +209,7 @@ Path Group         From Clock         To Clock               WNS(ns)      TNS(ns
 From Clock:  CLK100MHZ
   To Clock:  CLK100MHZ
 
-Setup :            0  Failing Endpoints,  Worst Slack       11.690ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack       10.490ns,  Total Violation        0.000ns
 Hold  :            0  Failing Endpoints,  Worst Slack        0.037ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        8.870ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
@@ -217,16 +217,16 @@ PW    :            0  Failing Endpoints,  Worst Slack        8.870ns,  Total Vio
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             11.690ns  (required time - arrival time)
-  Source:                 u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/rd_ptr_reg[4]/C
+Slack (MET) :             10.490ns  (required time - arrival time)
+  Source:                 u_soc/u_kyber_axi/S/j_replay_ctr_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by CLK100MHZ  {rise@0.000ns fall@10.000ns period=20.000ns})
-  Destination:            u_soc/u_kyber_axi/C/hash/sponge/block_reg_reg[0]/CE
+  Destination:            u_keccak_shared/sponge/block_reg_reg[1000]/CE
                             (rising edge-triggered cell FDRE clocked by CLK100MHZ  {rise@0.000ns fall@10.000ns period=20.000ns})
   Path Group:             CLK100MHZ
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            20.000ns  (CLK100MHZ rise@20.000ns - CLK100MHZ rise@0.000ns)
-  Data Path Delay:        7.965ns  (logic 1.889ns (23.716%)  route 6.076ns (76.284%))
-  Logic Levels:           13  (LUT3=2 LUT4=1 LUT5=5 LUT6=5)
+  Data Path Delay:        9.165ns  (logic 1.994ns (21.757%)  route 7.171ns (78.243%))
+  Logic Levels:           14  (LUT2=2 LUT3=1 LUT4=2 LUT5=2 LUT6=7)
   Clock Path Skew:        -0.145ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    2.456ns = ( 22.456 - 20.000 ) 
     Source Clock Delay      (SCD):    2.707ns
@@ -246,38 +246,40 @@ Slack (MET) :             11.690ns  (required time - arrival time)
     N18                  IBUF (Prop_ibuf_I_O)         1.392     1.392 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.646     2.038    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.085     2.123 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.584     2.707    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/CLK100MHZ_IBUF_BUFG
-                         FDRE                                         r  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/rd_ptr_reg[4]/C
+                         net (fo=27992, unplaced)     0.584     2.707    u_soc/u_kyber_axi/S/CLK100MHZ_IBUF_BUFG
+                         FDRE                                         r  u_soc/u_kyber_axi/S/j_replay_ctr_reg[0]/C
   -------------------------------------------------------------------    -------------------
-                         FDRE (Prop_fdre_C_Q)         0.397     3.104 r  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/rd_ptr_reg[4]/Q
-                         net (fo=7, unplaced)         0.634     3.738    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/rd_ptr_reg[4]
-                         LUT4 (Prop_lut4_I1_O)        0.232     3.970 r  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/mem_reg_i_58/O
-                         net (fo=1, unplaced)         0.347     4.317    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/mem_reg_i_58_n_1
-                         LUT5 (Prop_lut5_I4_O)        0.105     4.422 r  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/mem_reg_i_57/O
-                         net (fo=1, unplaced)         0.347     4.769    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/mem_reg_i_57_n_1
-                         LUT6 (Prop_lut6_I5_O)        0.105     4.874 f  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/mem_reg_i_55/O
-                         net (fo=5, unplaced)         0.375     5.249    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/wr_ptr_reg[5]_0
-                         LUT5 (Prop_lut5_I0_O)        0.105     5.354 r  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/state[5]_i_6/O
-                         net (fo=4, unplaced)         0.371     5.725    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/eta3_bit_reg
-                         LUT5 (Prop_lut5_I4_O)        0.105     5.830 f  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/state[3]_i_6/O
-                         net (fo=1, unplaced)         0.347     6.177    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/state[3]_i_6_n_1
-                         LUT5 (Prop_lut5_I0_O)        0.105     6.282 f  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/state[3]_i_4__0/O
-                         net (fo=1, unplaced)         0.347     6.629    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/state[3]_i_4__0_n_1
-                         LUT5 (Prop_lut5_I4_O)        0.105     6.734 r  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/state[3]_i_1__1/O
-                         net (fo=5, unplaced)         0.610     7.344    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/state_reg[4]_0
-                         LUT6 (Prop_lut6_I1_O)        0.105     7.449 f  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/squeeze_ctr[5]_i_7/O
-                         net (fo=1, unplaced)         0.582     8.031    u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/squeeze_ctr[5]_i_7_n_1
-                         LUT3 (Prop_lut3_I0_O)        0.105     8.136 f  u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/squeeze_ctr[5]_i_4/O
-                         net (fo=2, unplaced)         0.358     8.494    u_soc/u_kyber_axi/C/hash/sponge/squeeze_init_early
-                         LUT6 (Prop_lut6_I2_O)        0.105     8.599 r  u_soc/u_kyber_axi/C/hash/sponge/squeeze_ctr[5]_i_2/O
-                         net (fo=45, unplaced)        0.427     9.026    u_soc/u_kyber_axi/C/hash/sponge/keccak_squeeze
-                         LUT3 (Prop_lut3_I1_O)        0.105     9.131 r  u_soc/u_kyber_axi/C/hash/sponge/block_reg[766]_i_5__0/O
-                         net (fo=123, unplaced)       0.452     9.583    u_soc/u_kyber_axi/C/hash/sponge/block_reg[766]_i_5__0_n_1
-                         LUT6 (Prop_lut6_I4_O)        0.105     9.688 f  u_soc/u_kyber_axi/C/hash/sponge/block_reg[1599]_i_4/O
-                         net (fo=84, unplaced)        0.442    10.130    u_soc/u_kyber_axi/C/hash/sponge/block_reg[1599]_i_4_n_1
-                         LUT6 (Prop_lut6_I5_O)        0.105    10.235 r  u_soc/u_kyber_axi/C/hash/sponge/block_reg[31]_i_1__0/O
-                         net (fo=32, unplaced)        0.437    10.672    u_soc/u_kyber_axi/C/hash/sponge/block_reg[31]_i_1__0_n_1
-                         FDRE                                         r  u_soc/u_kyber_axi/C/hash/sponge/block_reg_reg[0]/CE
+                         FDRE (Prop_fdre_C_Q)         0.397     3.104 f  u_soc/u_kyber_axi/S/j_replay_ctr_reg[0]/Q
+                         net (fo=15, unplaced)        0.652     3.756    u_soc/u_kyber_axi/S/hash/decode/i___341_i_33_0[0]
+                         LUT4 (Prop_lut4_I1_O)        0.232     3.988 r  u_soc/u_kyber_axi/S/hash/decode/i___129_i_3/O
+                         net (fo=1, unplaced)         0.347     4.335    u_soc/u_kyber_axi/S/hash/decode/i___129_i_3_n_1
+                         LUT5 (Prop_lut5_I0_O)        0.105     4.440 r  u_soc/u_kyber_axi/S/hash/decode/i___129_i_2/O
+                         net (fo=3, unplaced)         0.600     5.040    u_soc/u_kyber_axi/S/hash/decode/i___129_i_2_n_1
+                         LUT6 (Prop_lut6_I1_O)        0.105     5.145 r  u_soc/u_kyber_axi/S/hash/decode/i___341_i_24/O
+                         net (fo=1, unplaced)         0.938     6.083    u_soc/u_kyber_axi/S/hash/ififo_inst/inst/i___341_i_2_0
+                         LUT6 (Prop_lut6_I0_O)        0.105     6.188 r  u_soc/u_kyber_axi/S/hash/ififo_inst/inst/i___341_i_12/O
+                         net (fo=1, unplaced)         0.347     6.535    u_soc/u_kyber_axi/S/hash/ififo_inst/inst/i___341_i_12_n_1
+                         LUT6 (Prop_lut6_I5_O)        0.105     6.640 r  u_soc/u_kyber_axi/S/hash/ififo_inst/inst/i___341_i_2/O
+                         net (fo=7, unplaced)         0.617     7.257    u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/ififo_mode_reg[0]_0
+                         LUT6 (Prop_lut6_I0_O)        0.105     7.362 f  u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/i___340_i_5/O
+                         net (fo=2, unplaced)         0.339     7.701    u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/i___340_i_5_n_1
+                         LUT2 (Prop_lut2_I0_O)        0.105     7.806 f  u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/i___340_i_3/O
+                         net (fo=6, unplaced)         0.379     8.185    u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/state_reg[0]
+                         LUT6 (Prop_lut6_I5_O)        0.105     8.290 f  u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/round_count[4]_i_6__0/O
+                         net (fo=2, unplaced)         0.358     8.648    u_keccak_shared/sponge/keccak_init_hard0
+                         LUT4 (Prop_lut4_I1_O)        0.105     8.753 f  u_keccak_shared/sponge/round_count[4]_i_5__0/O
+                         net (fo=7, unplaced)         0.382     9.135    u_keccak_shared/sponge/init_clears0
+                         LUT6 (Prop_lut6_I5_O)        0.105     9.240 f  u_keccak_shared/sponge/base_state[1599]_i_3__0/O
+                         net (fo=920, unplaced)       0.487     9.727    u_keccak_shared/sponge/base_state[1599]_i_3__0_n_1
+                         LUT2 (Prop_lut2_I0_O)        0.105     9.832 f  u_keccak_shared/sponge/have_block_i_4/O
+                         net (fo=812, unplaced)       0.487    10.319    u_keccak_shared/sponge/have_block_i_4_n_1
+                         LUT3 (Prop_lut3_I1_O)        0.105    10.424 r  u_keccak_shared/sponge/block_reg[670]_i_6__0/O
+                         net (fo=31, unplaced)        0.417    10.841    u_keccak_shared/sponge/block_reg[670]_i_6__0_n_1
+                         LUT5 (Prop_lut5_I2_O)        0.105    10.946 r  u_keccak_shared/sponge/block_reg[1022]_i_4/O
+                         net (fo=8, unplaced)         0.385    11.331    u_keccak_shared/sponge/block_reg[1022]_i_4_n_1
+                         LUT6 (Prop_lut6_I3_O)        0.105    11.436 r  u_keccak_shared/sponge/block_reg[1022]_i_1/O
+                         net (fo=31, unplaced)        0.436    11.872    u_keccak_shared/sponge/block_reg[1022]_i_1_n_1
+                         FDRE                                         r  u_keccak_shared/sponge/block_reg_reg[1000]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock CLK100MHZ rise edge)
@@ -287,16 +289,16 @@ Slack (MET) :             11.690ns  (required time - arrival time)
     N18                  IBUF (Prop_ibuf_I_O)         1.327    21.327 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.613    21.940    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.077    22.017 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.439    22.456    u_soc/u_kyber_axi/C/hash/sponge/CLK100MHZ_IBUF_BUFG
-                         FDRE                                         r  u_soc/u_kyber_axi/C/hash/sponge/block_reg_reg[0]/C
+                         net (fo=27992, unplaced)     0.439    22.456    u_keccak_shared/sponge/CLK100MHZ_IBUF_BUFG
+                         FDRE                                         r  u_keccak_shared/sponge/block_reg_reg[1000]/C
                          clock pessimism              0.106    22.562    <hidden>
                          clock uncertainty           -0.035    22.526    <hidden>
-                         FDRE (Setup_fdre_C_CE)      -0.165    22.361    u_soc/u_kyber_axi/C/hash/sponge/block_reg_reg[0]
+                         FDRE (Setup_fdre_C_CE)      -0.165    22.361    u_keccak_shared/sponge/block_reg_reg[1000]
   -------------------------------------------------------------------
                          required time                         22.361    <hidden>
-                         arrival time                         -10.672    <hidden>
+                         arrival time                         -11.872    <hidden>
   -------------------------------------------------------------------
-                         slack                                 11.690    <hidden>
+                         slack                                 10.490    <hidden>
 
 
 
@@ -328,7 +330,7 @@ Slack (MET) :             0.037ns  (arrival time - required time)
     N18                  IBUF (Prop_ibuf_I_O)         0.229     0.229 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.320     0.549    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.026     0.575 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.114     0.689    u_puf/CLK100MHZ_IBUF_BUFG
+                         net (fo=27992, unplaced)     0.114     0.689    u_puf/CLK100MHZ_IBUF_BUFG
                          FDCE                                         r  u_puf/winner_meta_reg/C
   -------------------------------------------------------------------    -------------------
                          FDCE (Prop_fdce_C_Q)         0.147     0.836 r  u_puf/winner_meta_reg/Q
@@ -343,7 +345,7 @@ Slack (MET) :             0.037ns  (arrival time - required time)
     N18                  IBUF (Prop_ibuf_I_O)         0.417     0.417 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.337     0.754    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.029     0.783 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.259     1.042    u_puf/CLK100MHZ_IBUF_BUFG
+                         net (fo=27992, unplaced)     0.259     1.042    u_puf/CLK100MHZ_IBUF_BUFG
                          FDCE                                         r  u_puf/winner_sync_reg/C
                          clock pessimism             -0.208     0.834    <hidden>
                          FDCE (Hold_fdce_C_D)         0.038     0.872    u_puf/winner_sync_reg
@@ -412,13 +414,13 @@ Slack (MET) :             17.138ns  (required time - arrival time)
     N18                  IBUF (Prop_ibuf_I_O)         1.392     1.392 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.646     2.038    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.085     2.123 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.584     2.707    u_soc/u_kyber_axi/CLK100MHZ_IBUF_BUFG
+                         net (fo=27992, unplaced)     0.584     2.707    u_soc/u_kyber_axi/CLK100MHZ_IBUF_BUFG
                          FDRE                                         r  u_soc/u_kyber_axi/FSM_onehot_launch_state_reg[2]/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.397     3.104 r  u_soc/u_kyber_axi/FSM_onehot_launch_state_reg[2]/Q
                          net (fo=5, unplaced)         0.390     3.494    u_soc/u_kyber_axi/C/hash/sponge/algo_inst/auto_squeeze_perm_reg
                          LUT2 (Prop_lut2_I0_O)        0.232     3.726 r  u_soc/u_kyber_axi/C/hash/sponge/algo_inst/have_block_i_1/O
-                         net (fo=1852, unplaced)      0.487     4.213    u_soc/u_kyber_axi/C/hash/sponge/algo_inst/FSM_onehot_launch_state_reg[2]
+                         net (fo=1856, unplaced)      0.487     4.213    u_soc/u_kyber_axi/C/hash/sponge/algo_inst/FSM_onehot_launch_state_reg[2]
                          LUT1 (Prop_lut1_I0_O)        0.105     4.318 f  u_soc/u_kyber_axi/C/hash/sponge/algo_inst/state_q[1599]_i_2/O
                          net (fo=1600, unplaced)      0.784     5.102    u_soc/u_kyber_axi/C/hash/sponge/algo_inst/state_q[1599]_i_2_n_1
                          FDCE                                         f  u_soc/u_kyber_axi/C/hash/sponge/algo_inst/state_q_reg[0]/CLR
@@ -431,7 +433,7 @@ Slack (MET) :             17.138ns  (required time - arrival time)
     N18                  IBUF (Prop_ibuf_I_O)         1.327    21.327 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.613    21.940    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.077    22.017 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.439    22.456    u_soc/u_kyber_axi/C/hash/sponge/algo_inst/CLK100MHZ_IBUF_BUFG
+                         net (fo=27992, unplaced)     0.439    22.456    u_soc/u_kyber_axi/C/hash/sponge/algo_inst/CLK100MHZ_IBUF_BUFG
                          FDCE                                         r  u_soc/u_kyber_axi/C/hash/sponge/algo_inst/state_q_reg[0]/C
                          clock pessimism              0.106    22.562    <hidden>
                          clock uncertainty           -0.035    22.526    <hidden>
@@ -472,11 +474,11 @@ Slack (MET) :             0.343ns  (arrival time - required time)
     N18                  IBUF (Prop_ibuf_I_O)         0.229     0.229 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.320     0.549    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.026     0.575 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.114     0.689    CLK100MHZ_IBUF_BUFG
+                         net (fo=27992, unplaced)     0.114     0.689    CLK100MHZ_IBUF_BUFG
                          FDRE                                         r  por_done_reg/C
   -------------------------------------------------------------------    -------------------
                          FDRE (Prop_fdre_C_Q)         0.147     0.836 f  por_done_reg/Q
-                         net (fo=1722, unplaced)      0.200     1.037    u_keccak_shared/sponge/algo_inst/por_done
+                         net (fo=1723, unplaced)      0.200     1.037    u_keccak_shared/sponge/algo_inst/por_done
                          FDCE                                         f  u_keccak_shared/sponge/algo_inst/state_q_reg[0]/CLR
   -------------------------------------------------------------------    -------------------
 
@@ -487,7 +489,7 @@ Slack (MET) :             0.343ns  (arrival time - required time)
     N18                  IBUF (Prop_ibuf_I_O)         0.417     0.417 r  CLK100MHZ_IBUF_inst/O
                          net (fo=1, unplaced)         0.337     0.754    CLK100MHZ_IBUF
                          BUFG (Prop_bufg_I_O)         0.029     0.783 r  CLK100MHZ_IBUF_BUFG_inst/O
-                         net (fo=26296, unplaced)     0.259     1.042    u_keccak_shared/sponge/algo_inst/CLK100MHZ_IBUF_BUFG
+                         net (fo=27992, unplaced)     0.259     1.042    u_keccak_shared/sponge/algo_inst/CLK100MHZ_IBUF_BUFG
                          FDCE                                         r  u_keccak_shared/sponge/algo_inst/state_q_reg[0]/C
                          clock pessimism             -0.208     0.834    <hidden>
                          FDCE (Remov_fdce_C_CLR)     -0.141     0.693    u_keccak_shared/sponge/algo_inst/state_q_reg[0]

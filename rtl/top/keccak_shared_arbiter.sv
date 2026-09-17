@@ -51,7 +51,8 @@ module keccak_shared_arbiter(
     output wire        sh_dout_valid,
     output wire        sh_done,
     output wire        sh_done_extend,
-    output wire [5:0]  sh_dout_rate_words
+    output wire [5:0]  sh_dout_rate_words,
+    output wire hash_grant
 );
 
     // ------------------------------------------------------------------
@@ -63,11 +64,11 @@ module keccak_shared_arbiter(
             kdf_hold <= 1'b0;
         else if (kdf_hold && !kdf_req)
             kdf_hold <= 1'b0;                       // KDF transaction finished
-        else if (!kdf_hold && kdf_req && sh_idle && !hash_init)
+        else if (!kdf_hold && kdf_req && !sh_busy && !hash_init)
             kdf_hold <= 1'b1;                       // safe handoff point only
     end
 
-    wire hash_grant = ~kdf_hold;
+    assign hash_grant = ~kdf_hold;
     assign kdf_grant = kdf_hold;
 
     // ------------------------------------------------------------------
