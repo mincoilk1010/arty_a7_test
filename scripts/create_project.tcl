@@ -7,8 +7,7 @@ set script_dir [file dirname [file normalize [info script]]]
 set root_dir [file normalize [file join $script_dir ..]]
 set build_dir [file join $root_dir build vivado]
 set project_name kyber_ro_puf_zynq7020
-set extra_constraint_files [list [file join $root_dir constraints \
-    ro_physical_lock_rc1_zynq7020.xdc]]
+set extra_constraint_files [list]
 if {[info exists soc_build_dir_override]} {
     set build_dir [file normalize $soc_build_dir_override]
 }
@@ -36,6 +35,7 @@ set sources [list \
     [file join $root_dir rtl common keccak_pkg.sv] \
     [file join $root_dir rtl hash_core fips202_sponge.sv] \
     [file join $root_dir rtl kyber kyber_axi_wrapper.v] \
+    [file join $root_dir rtl top keccak_arbiter.v] \
     [file join $root_dir rtl top kdf_keccak.sv] \
     [file join $root_dir rtl top Kyber_System_Top.sv] \
     [file join $root_dir rtl soc picorv32.v] \

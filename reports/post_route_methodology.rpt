@@ -1,14 +1,14 @@
-Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
-------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-| Date         : Fri Sep  4 09:18:02 2026
-| Host         : donglong-P7xxTM-1 running 64-bit Ubuntu 22.04.5 LTS
-| Command      : report_methodology -file reports/post_route_methodology.rpt
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (lin64) Build 6511674 Tue Jun 16 11:01:26 MDT 2026
+| Date         : Thu Sep 17 09:13:44 2026
+| Host         : minh-bui-Dell-G15-5511 running 64-bit Ubuntu 26.04 LTS
+| Command      : report_methodology -file /home/minh-bui/Desktop/arty_a7_test/reports/post_route_methodology.rpt
 | Design       : Kyber_System_Top
 | Device       : xc7z020clg400-2
 | Speed File   : -2
 | Design State : Fully Routed
-------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 Report Methodology
 
@@ -22,16 +22,17 @@ Table of Contents
             Netlist: netlist
           Floorplan: impl_1
       Design limits: <entire design considered>
-             Max violations: <unlimited>
-             Violations found: 110
-+-----------+------------------+-------------------------------+------------+
-| Rule      | Severity         | Description                   | Violations |
-+-----------+------------------+-------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 72         |
-| LUTAR-1   | Warning          | LUT drives async reset alert  | 2          |
-| TIMING-18 | Warning          | Missing input or output delay | 4          |
-| TIMING-23 | Warning          | Combinational loop found      | 32         |
-+-----------+------------------+-------------------------------+------------+
+             Max checks: <unlimited>
+             Checks found: 143
++-----------+------------------+--------------------------------------------+--------+
+| Rule      | Severity         | Description                                | Checks |
++-----------+------------------+--------------------------------------------+--------+
+| TIMING-17 | Critical Warning | Non-clocked sequential cell                | 72     |
+| LUTAR-1   | Warning          | LUT drives async reset alert               | 1      |
+| SYNTH-6   | Warning          | Timing of a RAM block might be sub-optimal | 34     |
+| TIMING-18 | Warning          | Missing input or output delay              | 4      |
+| TIMING-23 | Warning          | Combinational loop found                   | 32     |
++-----------+------------------+--------------------------------------------+--------+
 
 2. REPORT DETAILS
 -----------------
@@ -399,47 +400,198 @@ LUTAR-1#1 Warning
 LUT drives async reset alert  
 LUT cell u_puf/ctrl_inst/reset_release[1]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) u_puf/counter0/reset_release_reg[0]/CLR,
 u_puf/counter0/reset_release_reg[1]/CLR,
-u_puf/counter1/reset_release_reg[0]/CLR,
+u_puf/counter1/reset_release_reg[0]/CLR
 u_puf/counter1/reset_release_reg[1]/CLR. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
-LUTAR-1#2 Warning
-LUT drives async reset alert  
-LUT cell u_soc/u_kyber_axi/S/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out[1599]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[0]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1000]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1001]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1002]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1003]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1004]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1005]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1006]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1007]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1008]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1009]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[100]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1010]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1011]/CLR,
-u_soc/u_kyber_axi/C/hash/sponge/algo_inst/STEP_MAPPING_5/Str_out_reg[1012]/CLR (the first 15 of 3200 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+SYNTH-6#1 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/memory_inst/memory_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/memory_inst/memory_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#3 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/memory_inst/memory_reg_2, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#4 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/memory_inst/memory_reg_3, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#5 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/DFIFO/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#6 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/IFIFO/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#7 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/OFIFO/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#8 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/hash/ififo_inst/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#9 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/hash/ofifo0_inst/inst/mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#10 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/hash/ofifo0_inst/inst/mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#11 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/hash/ofifo1_inst/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#12 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/hash/ofifo_inst/inst/mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#13 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/hash/ofifo_inst/inst/mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#14 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/ntt/RAM0/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#15 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/ntt/RAM1/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#16 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/ntt/RAM2/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#17 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/ntt/RAM3/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#18 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/C/ntt/RAM4/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#19 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/DFIFO0/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#20 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/DFIFO1/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#21 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/IFIFO/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#22 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/OFIFO/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#23 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/ciphertext_store/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#24 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/hash/ififo_inst/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#25 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#26 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/hash/ofifo0_inst/inst/mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#27 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/hash/ofifo1_inst/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#28 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/hash/ofifo_inst/inst/mem_reg_0, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#29 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/hash/ofifo_inst/inst/mem_reg_1, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#30 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/ntt/RAM0/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#31 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/ntt/RAM1/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#32 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/ntt/RAM2/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#33 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/ntt/RAM3/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#34 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_soc/u_kyber_axi/S/ntt/RAM4/inst/mem_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
 Related violations: <none>
 
 TIMING-18#1 Warning
 Missing input or output delay  
-An input delay is missing on UART_RXD relative to clock(s) CLK100MHZ
+An input delay is missing on UART_RXD relative to the rising and/or falling clock edge(s) of CLK100MHZ.
 Related violations: <none>
 
 TIMING-18#2 Warning
 Missing input or output delay  
-An output delay is missing on LED[0] relative to clock(s) CLK100MHZ
+An output delay is missing on LED[0] relative to the rising and/or falling clock edge(s) of CLK100MHZ.
 Related violations: <none>
 
 TIMING-18#3 Warning
 Missing input or output delay  
-An output delay is missing on LED[1] relative to clock(s) CLK100MHZ
+An output delay is missing on LED[1] relative to the rising and/or falling clock edge(s) of CLK100MHZ.
 Related violations: <none>
 
 TIMING-18#4 Warning
 Missing input or output delay  
-An output delay is missing on UART_TXD relative to clock(s) CLK100MHZ
+An output delay is missing on UART_TXD relative to the rising and/or falling clock edge(s) of CLK100MHZ.
 Related violations: <none>
 
 TIMING-23#1 Warning
